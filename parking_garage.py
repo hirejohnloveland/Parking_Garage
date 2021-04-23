@@ -1,14 +1,16 @@
-Class Parking_Garage():
+class Parking_Garage():
     def __.init__(self):
-    #   You will need a few attributes as well:
-    # - tickets -> list
-    # - parkingSpaces -> list
-    # - currentTicket -> dictionary
+        self.tickets = 0  # tickets sold
+        self.total_spaces = 20  # total number of spaces in garage
+        self.parking_spaces = {}  # Initialize a dictionary of parking spaces
+        for number in range(20):  # Assign each parking slot a status of "Open on startup"
+            parking_spaces[number] = "Open"
+        # Initialize a dictionary tracking whether tickets are paid or not
+        self.ticket_status = {}
 
 
 def takeTicket(self):
     pass
-
 # - takeTicket
 # - This should decrease the amount of tickets available by 1
 # - This should decrease the amount of parkingSpaces available by 1
