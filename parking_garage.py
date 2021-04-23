@@ -9,7 +9,7 @@ class Parking_Garage():
         self.ticket_status = {}
 
 
-def takeTicket(self):
+def take_Ticket(self):
     pass
 # - takeTicket
 # - This should decrease the amount of tickets available by 1
@@ -20,7 +20,7 @@ def takeTicket(self):
 # - This should update the "currentTicket" dictionary key "paid" to True
 
 
-def leaveGarage(self):
+def leave_Garage(self):
     pass
 # -leaveGarage
 # - If the ticket has been paid, display a message of "Thank You, have a nice day"
@@ -30,9 +30,27 @@ def leaveGarage(self):
 # - Update tickets list to increase by 1 (meaning add to the tickets list)
 
 
-def payForParking():
+def pay_For_Parking(self):
     pass
     # - payForParking
     # - Display an input that waits for an amount from the user and store it in a variable
     # - If the payment variable is not empty then (meaning the ticket has been paid) -> display a message to the user that their ticket has been paid and they have 15mins to leave
     # - This should update the "currentTicket" dictionary key "paid" to True
+
+
+this_garage = Parking_Garage()
+
+
+def main_loop()
+
+
+while True:
+    x = input(x):
+        if x = "":
+            this_garage.pay_For_Parking()
+        elif x = "":
+            this_garage.take_Ticket()
+        elif x = "":
+            this_garage.leave_Garage()
+        else:
+            print("Garage closing exit")
