@@ -4,4 +4,6 @@ import time
 
 
 # Instantiate parking garage and pass it to the UI constructor
-user_interface.User_Interface(this_garage := parking_garage.Parking_Garage())
+number_of_spaces = 5
+my_garage = parking_garage.Parking_Garage(number_of_spaces)
+user_interface.User_Interface(my_garage)
