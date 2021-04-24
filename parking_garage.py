@@ -13,12 +13,16 @@ class Parking_Garage():
         for number in range(1, self.TOTAL_SPACES+1):
             self.parking_spaces[number] = "Open"
 
+    # Main Methods for the UI, allowing users to park, pay, and exit.  Additionally there is an admin report which allow the
+    # operator (or developer) to generate a printout of the tickets sold, tickets paid / unpaid, and a list of the currently
+    # avaible and taken parking spaces
+
     def take_Ticket(self):
         """Issues a ticket number and the next available parking space to user if the lot isn't full"""
 
         if self.lot_full():
             print("The lot is full please return once someone leaves")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         else:
             self.tickets += 1
@@ -27,7 +31,7 @@ class Parking_Garage():
             self.ticket_status[self.tickets] = False
         print(
             f"You have ticket number {self.tickets} for parking space number {current_space}. Please pay the attendent before exiting")
-        input('Press any key to continue...')
+        input('Press Enter key to continue...')
 
     def pay_For_Parking(self):
         """Validates the user's ticket number is a valid, UNPAID ticket, then accepts payment and marks it in paid in the ticket_status dictionary"""
@@ -36,20 +40,20 @@ class Parking_Garage():
             ticket_number = int(ticket_number)
         except:
             print("Please enter an integer for this field. Returning to main menu!")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         if not self.ticket_valid(ticket_number):
             print("Please enter a valid ticket number!")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         if self.ticket_paid(ticket_number):
             print("This ticket is already paid. Please exit the parking garage")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         else:
             print("Thank you for your payment, please exit the parking garage")
             self.ticket_status[ticket_number] = True
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
 
     def leave_Garage(self):
         """Validates the user's ticket number is a valid, PAID ticket, then marks the space open in the parking_spaces dictionary and allows the user to exit"""
@@ -58,30 +62,30 @@ class Parking_Garage():
             ticket_number = int(ticket_number)
         except:
             print("Please enter an integer for this field. Returning to main menu!")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         if not self.ticket_valid(ticket_number):
             print("Please enter a valid ticket number!")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         if not self.ticket_paid(ticket_number):
             print("This ticket is not paid, please pay before leaving")
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
             return
         else:
             print("Thank you for your business, have a nice day")
             current_space = self.find_ticketspace(ticket_number)
             self.parking_spaces[current_space] = "Open"
-            input('Press any key to continue...')
+            input('Press Enter key to continue...')
 
     def admin_report(self):
-        # Analytical Report for Garage Owner (Or developer that wants to see what the code is doing easily) #
+        """Analytical Report for Garage Owner (Or developer that wants to see what the code is doing easily)"""
         print(f"{self.tickets} tickets have been sold")
-        print("Ticket List:")
+        print("Ticket payment status:")
         print(self.ticket_status)
-        print("List of the lot spaces:")
+        print("List of the lot spaces and associated tickets:")
         print(self.parking_spaces)
-        input('Press any key to continue...')
+        input('Press Enter key to continue...')
 
     # These Helper methods assist the take_ticket method to validate the lot is full
     # and provide the next free parking space from the parking_spaces dictionary
@@ -99,19 +103,23 @@ class Parking_Garage():
             if occupied == "Open":
                 return parking_spot
 
-    # These helper methods validate that the ticket is legit and paid for the leave_garage
-    # and pay_for_parking methods
+    # These helper methods validate that the ticket is:
+    # 1. A valid ticket that is currently inhouse
+    # 2. Paid or unpaid
 
-    def find_ticketspace(self, input_ticket):
+    def ticket_valid(self, ticket_number):
+        """Boolean check if ticket is in ticket dictionary"""
+        return (ticket_number) in self.parking_spaces.values()
+
+    def ticket_paid(self, ticket_number):
+        """Boolean check if ticked is paid or unpaid"""
+        return self.ticket_status[(ticket_number)]
+
+    # These helper method finds the parking spot that a
+    # particular ticket is occupying
+
+    def find_ticketspace(self, ticket_number):
         """finds the parking spot associated with a given ticket"""
         for parking_spot, occupied in self.parking_spaces.items():
-            if occupied == input_ticket:
+            if occupied == ticket_number:
                 return parking_spot
-
-    def ticket_valid(self, input_ticket):
-        """Boolean check if ticket is in ticket dictionary"""
-        return (input_ticket) in self.parking_spaces.values()
-
-    def ticket_paid(self, input_ticket):
-        """Boolean check if ticked is paid or unpaid"""
-        return self.ticket_status[(input_ticket)]
