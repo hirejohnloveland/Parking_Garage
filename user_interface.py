@@ -7,7 +7,7 @@ class User_Interface():
     # UI class receives a parking_garage object and instantiates a UI on the console with a header
     # and current date/time.  UI is cleared after each iteration via the os package / clear_console() UDF.  Current
     # time is displayed via the time package / get_current_time UDF.  Loop continues until user exit.  Private methods
-    # are provided below for clean coding
+    # are provided below
 
     def __init__(self, parking_garage):
         self.parking_garage = parking_garage
