@@ -1,4 +1,4 @@
-# Parking Garage Projectd  
+# Parking Garage Project
 
 #### Project Description
 This project is a simple Python teaching project for managing a parking garage, featuring an object oriented design with a loosely coupled architecture.  
